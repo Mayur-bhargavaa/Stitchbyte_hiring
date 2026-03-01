@@ -92,6 +92,24 @@ interface NotificationPreferences {
     maxEmailsPerMinute: number;
 }
 
+interface DashboardQuestion {
+    _id?: string;
+    text: string;
+    options: string[];
+    correctIndex: number;
+    difficulty: string;
+    category: string;
+}
+
+interface AppSettings {
+    examEnabled?: boolean;
+    salaryFixed?: string;
+    salaryIncentive?: string;
+    interviewDates?: string[];
+    interviewSlots?: string[];
+    [key: string]: unknown;
+}
+
 interface RiskData {
     summary: {
         totalCandidates: number;
@@ -134,8 +152,8 @@ export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState("Overview");
 
     // Admin Data
-    const [questions, setQuestions] = useState<Array<Record<string, unknown>>>([]);
-    const [appSettings, setAppSettings] = useState<Record<string, unknown> | null>(null);
+    const [questions, setQuestions] = useState<DashboardQuestion[]>([]);
+    const [appSettings, setAppSettings] = useState<AppSettings | null>(null);
     const [settingsSaving, setSettingsSaving] = useState(false);
     const [emailQueue, setEmailQueue] = useState<EmailQueueItem[]>([]);
     const [emailQueueLoading, setEmailQueueLoading] = useState(false);
@@ -1078,7 +1096,7 @@ export default function DashboardPage() {
 
                         <div className="grid gap-4">
                             {questions.map((q, i) => (
-                                <div key={q._id || i} className="p-5 rounded-lg bg-[#0f1419] border border-white/10 hover:border-[var(--sb-violet)]/30 transition-all">
+                                <div key={String(q._id || i)} className="p-5 rounded-lg bg-[#0f1419] border border-white/10 hover:border-[var(--sb-violet)]/30 transition-all">
                                     <div className="flex items-start justify-between gap-4">
                                         <div className="flex-1">
                                             <div className="flex items-center gap-2 mb-2">
@@ -1093,7 +1111,7 @@ export default function DashboardPage() {
                                             </div>
                                             <h3 className="text-white font-medium mb-3 leading-relaxed">{q.text}</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                                {q.options.map((opt: string, idx: number) => (
+                                                {q.options.map((opt, idx) => (
                                                     <div key={idx} className={`px-3 py-2 rounded-lg text-xs flex items-center gap-2 ${
                                                         idx === q.correctIndex 
                                                             ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20' 

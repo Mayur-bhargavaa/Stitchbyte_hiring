@@ -42,7 +42,6 @@ export async function GET(req: NextRequest) {
                 message: "No interview dates are currently available. Please check back later.",
             });
         }
-
         // If a specific date is requested, use it; otherwise use the nearest future date
         const selectedDate = requestedDate && futureDates.includes(requestedDate)
             ? requestedDate
@@ -53,7 +52,9 @@ export async function GET(req: NextRequest) {
             { interviewDate: selectedDate },
             { interviewTime: 1 }
         );
-        const bookedForDate = bookedCandidates.map((c: { interviewTime: string }) => c.interviewTime);
+        const bookedForDate = bookedCandidates
+            .map((c) => c.interviewTime)
+            .filter((time): time is string => time !== null && time !== undefined);
 
         return NextResponse.json({
             success: true,
