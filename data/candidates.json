@@ -1,0 +1,30 @@
+[
+  {
+    "candidateId": "SB-BDE-1001",
+    "name": "Mayur",
+    "email": "mayurbhargava026@gmail.com",
+    "phone": "8619365849",
+    "salaryComfort": true,
+    "quizScore": 25,
+    "quizTotal": 30,
+    "tabViolations": 1,
+    "qualificationStatus": "Qualified",
+    "interviewStatus": "Pending",
+    "submissionDate": "2026-02-28T16:50:11.796Z",
+    "notes": ""
+  },
+  {
+    "candidateId": "SB-BDE-1002",
+    "name": "Qualifying Candidate",
+    "email": "qualify@example.com",
+    "phone": "+91 88888 88888",
+    "salaryComfort": true,
+    "quizScore": 24,
+    "quizTotal": 30,
+    "tabViolations": 1,
+    "qualificationStatus": "Qualified",
+    "interviewStatus": "Pending",
+    "submissionDate": "2026-02-28T16:47:00.303Z",
+    "notes": ""
+  }
+]
