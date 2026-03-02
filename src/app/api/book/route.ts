@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 3. Generate Link and Save
-        const meetingBaseUrl = process.env.MEETING_BASE_URL || "http://localhost:3001/meeting";
+        const meetingBaseUrl = process.env.MEETING_BASE_URL || "https://teams.stitchbyte.in/meeting";
         const meetingLink = `${meetingBaseUrl}/instant-1jd-ano-oql?hostId=685b0dae322e028c4011991d&instant=true&cid=${candidateId}`;
 
         await Candidate.findOneAndUpdate(
